@@ -1,0 +1,4 @@
+components\MainController.class
+Mapper\PeopleMapper.class
+Models\Person.class
+components\DaoImplController.class
