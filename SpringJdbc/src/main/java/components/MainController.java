@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -20,8 +22,13 @@ public class MainController {
     @Autowired
     private DaoImplController daoImplController;
 
+    @Autowired
+    HttpServletRequest request;
+
+
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String getPeople(Model model) {
+    //   request.getSession().getAttribute("isAllowed");
         if(daoImplController.getAll() == null){
             model.addAttribute("quantity",0);
             model.addAttribute("allPeople",new Person(1,"a","b","c"));
@@ -41,9 +48,7 @@ public class MainController {
     public String newContactAdded( @RequestParam(value = "country",required = false) String country,
                                    @RequestParam(value = "name",required = false) String name,
                                    @RequestParam(value = "surname",required = false) String surname, Model model) {
-        System.out.println(country);
-        System.out.println(name);
-        System.out.println(surname);
+
         daoImplController.addPerson(country,name,surname);
         String redirectUrl = "/";
         return "redirect:" + redirectUrl;

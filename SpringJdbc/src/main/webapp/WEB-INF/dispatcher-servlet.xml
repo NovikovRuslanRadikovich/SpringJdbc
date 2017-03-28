@@ -13,7 +13,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
     <!-- Определяем папку, в которой будем искать веб компоненты (контроллеры)-->
-    <context:component-scan base-package="components"/>
+    <context:component-scan base-package="components"/>к
 
 
     <!--Отображение видов на ftl-файлы, лежащие в папке /WEB-INF/views-->
