@@ -2,6 +2,7 @@ package ru.kpfu.itis.NovikovRuslan.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.kpfu.itis.NovikovRuslan.aspect_log.DaoExceptionLogger;
 import ru.kpfu.itis.NovikovRuslan.entities.User;
 import ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.UsersDaoHibernateImpl;
 
@@ -11,6 +12,9 @@ import ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.UsersDaoHibernateImpl
 public class UserService {
     @Autowired
     UsersDaoHibernateImpl usersDaoHibernateImpl;
+
+    @Autowired
+    DaoExceptionLogger daoExceptionLogger;
 
     public void saveUser(User user) {usersDaoHibernateImpl.saveUser(user);}
 

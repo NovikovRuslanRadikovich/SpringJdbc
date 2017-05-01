@@ -28,8 +28,6 @@ public class DaoExceptionLogger {
     @After("execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.DoctorsDaoHibernateImpl.saveDoctor(..)) "
             + "&& args(doctor)")
     public void logAfterSaving(Doctor doctor){
-
-        System.out.println("FUCKKKKKKKKKKKKKKKKKKKKKKKKK");
         logger.info("Successfully saved doctor with name" + doctor.getFio());
     }
 

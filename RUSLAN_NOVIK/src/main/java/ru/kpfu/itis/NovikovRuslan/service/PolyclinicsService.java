@@ -2,6 +2,7 @@ package ru.kpfu.itis.NovikovRuslan.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.kpfu.itis.NovikovRuslan.aspect_log.DaoExceptionLogger;
 import ru.kpfu.itis.NovikovRuslan.entities.Doctor;
 import ru.kpfu.itis.NovikovRuslan.entities.Polyclinic;
 import ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.PolyclinicsDaoHibernateImpl;
@@ -14,6 +15,9 @@ import java.util.List;
 public class PolyclinicsService {
     @Autowired
     PolyclinicsDaoHibernateImpl polyclinicDao;
+
+    @Autowired
+    DaoExceptionLogger daoExceptionLogger;
 
     public List<Doctor> getAllDoctors(Long polyclinic_id){ return polyclinicDao.getAllDoctors(polyclinic_id);}
 
