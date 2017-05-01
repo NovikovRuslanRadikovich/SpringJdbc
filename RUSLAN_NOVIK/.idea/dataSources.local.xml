@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="hibernate.cfg.xml/Hibernate" uuid="aa4b5942-583a-441e-820c-1c793f786bf0">
+      <database-info product="PostgreSQL" version="9.3.3" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
+      <user-password>df9bdf98df99df9edf9fdf9c</user-password>
+      <resolve-scope>postgres:postgres,public</resolve-scope>
+    </data-source>
+  </component>
+</project>

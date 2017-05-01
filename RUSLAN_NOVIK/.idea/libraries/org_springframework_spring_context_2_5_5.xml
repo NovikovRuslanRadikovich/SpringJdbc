@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="org.springframework:spring-context:2.5.5" type="repository">
+    <properties maven-id="org.springframework:spring-context:2.5.5" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/2.5.5/spring-context-2.5.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/xml/jaxrpc-api/1.1/jaxrpc-api-1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/2.5.5/spring-beans-2.5.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/2.5.5/spring-core-2.5.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
