@@ -43,7 +43,7 @@ public class DoctorsDaoHibernateImpl {
             session.delete(doctor);
             session.getTransaction().commit();
         } catch(Exception e) {
-            logger.error("error deleting doctor",e.getCause());
+            e.printStackTrace();
         } finally{
             if (session != null && session.isOpen()) {
                 session.close();

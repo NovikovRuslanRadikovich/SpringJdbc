@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <?import javafx.scene.control.Button?>
+        <?import javafx.scene.control.Label?>
+        <?import javafx.scene.layout.AnchorPane?>
+
+        <?import javafx.scene.control.TextField?>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0"
+            prefWidth="376.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.EditAutomobilesController">
+<children>
+    <Label layoutX="14.0" layoutY="22.0" text="Модель:"  />
+    <TextField layoutX="8.0" layoutY="45.0" prefWidth="187.0" fx:id="modelEdit" />
+    <Label layoutX="14.0" layoutY="81.0" text="Год:" />
+    <TextField layoutX="8.0" layoutY="104.0" prefWidth="187.0" fx:id="yearEdit"/>
+    <Label layoutX="8.0" layoutY="140.0" text="Пробег:"/>
+    <TextField layoutX="8.0" layoutY="163.0" prefWidth="187.0" fx:id="probegEdit" />
+    <Label layoutX="8.0" layoutY="199.0" text="Мощность:"/>
+    <TextField layoutX="8.0" layoutY="222.0" prefWidth="187.0" fx:id="powerEdit"/>
+    <Label layoutX="8.0" layoutY="258.0" text="Аренда:"/>
+    <TextField layoutX="8.0" layoutY="281.0" prefWidth="187.0" fx:id="rentpayEdit"/>
+    <Button layoutX="14.0" layoutY="310.0" mnemonicParsing="false" prefWidth="81.0" text="Редактировать" onAction="#editAutomobile"/>
+    <Button layoutX="108.0" layoutY="310.0" mnemonicParsing="false" prefWidth="81.0" text="Отмена" onAction="#exit"/>
+</children>
+</AnchorPane>

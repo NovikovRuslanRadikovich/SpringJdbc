@@ -4,10 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link href="/resources/css/style.css" rel="stylesheet">
 </head>
 <body>
-
-<form name="user" action="/login" method="POST">
+<@security.authorize access="isAnonymous()">
+<a class="register-button" href="/registration">Регистрация</a>
+</@security.authorize>
+<br>
+<a href="/">На главную</a>
+<form name="user" class="cd-form" action="/login" method="POST">
     <div class="form-group row">
         <label for="nickname" class="col-sm-2 col-form-label">Имя:</label>
         <div class="col-sm-10">
@@ -28,7 +33,7 @@
     </div>
 
 <#if Session.SPRING_SECURITY_LAST_EXCEPTION?? && Session.SPRING_SECURITY_LAST_EXCEPTION.message?has_content>
-   <strong> ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}</strong>
+   <strong class="text-danger"> ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}</strong>
 </#if>
 
 

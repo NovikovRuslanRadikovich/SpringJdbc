@@ -23,13 +23,8 @@ private static final Logger logger = Logger.getLogger(CitiesDaoHibernateImpl.cla
         List cities = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
-            if(session == null ) {
-                System.out.println ("fuck");
-            }
             cities = session.createQuery("From City").list();
-            if(cities == null) {
-                System.out.println("blyat");
-            }
+
         } catch(Exception e) {
             System.out.println(e.getCause());
         } finally{
@@ -69,7 +64,7 @@ private static final Logger logger = Logger.getLogger(CitiesDaoHibernateImpl.cla
            session.getTransaction().commit();
 
        } catch(Exception e) {
-           logger.error(e.getCause());
+           e.printStackTrace();
        }finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -100,7 +95,7 @@ private static final Logger logger = Logger.getLogger(CitiesDaoHibernateImpl.cla
             session = HibernateUtil.getSessionFactory().openSession();
             city = (City) session.createQuery("from City where name=:cityname").setParameter("cityname",name).setMaxResults(1).uniqueResult();
         } catch(Exception e) {
-           logger.error("error retrieving city", e.getCause());
+           e.printStackTrace();
         } finally{
             if(session != null && session.isOpen()) {
                 session.close();

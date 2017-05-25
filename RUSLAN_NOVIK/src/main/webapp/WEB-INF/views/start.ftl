@@ -3,7 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
         function Delete_city(j) {
@@ -38,7 +40,7 @@
 </head>
 <body>
 <@security.authorize access="isAnonymous()">
-<a href="/registration">Регистрация</a>
+<a class="register-button" href="/registration">Регистрация</a>
 </@security.authorize>
 <br>
 <@security.authorize access="isAnonymous()">

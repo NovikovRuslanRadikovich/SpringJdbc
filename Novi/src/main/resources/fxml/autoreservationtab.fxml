@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.TabPane?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<TabPane prefHeight="300.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.example.ui.AutoReservationTabController">
+    <Tab text="automobiles">
+        <HBox alignment="CENTER" layoutX="21.0" layoutY="207.0" prefHeight="50.0" prefWidth="300.0">
+            <children>
+                <TableView fx:id="autotable" editable="true" prefHeight="200.0" prefWidth="400.0" tableMenuButtonVisible="true">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+                <TextField fx:id="model" promptText="Модель">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="year" promptText="Год">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="probeg" promptText="Пробег">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="powerty" promptText="Мощность">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="rentpay" promptText="Аренда">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addCar" text="Добавить"/>
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCar" text="Удалить"/>
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEditCar" text="Изменить"/>
+            </children>
+        </HBox>
+    </Tab>
+    <Tab text="reservations">
+        <HBox alignment="CENTER" layoutX="21.0" layoutY="207.0" prefHeight="50.0" prefWidth="300.0">
+            <children>
+                <TableView fx:id="reservationtable" editable="true" prefHeight="200.0" prefWidth="400.0" tableMenuButtonVisible="true">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+                <TextField fx:id="username" promptText="Клиент">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="telephone" promptText="Телефон">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="reservationmodel" promptText="Модель">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="give_date" promptText="Выдача">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="back_date" promptText="Возврат">
+                    <HBox.margin>
+                        <Insets right="3.0"/>
+                    </HBox.margin>
+                </TextField>
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addReservation" text="Добавить"/>
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteReservation" text="Удалить"/>
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEditReservation" text="Изменить"/>
+            </children>
+        </HBox>
+    </Tab>
+</TabPane>

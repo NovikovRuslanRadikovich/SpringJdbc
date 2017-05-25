@@ -24,7 +24,6 @@ import javax.transaction.Transactional;
 
 @Repository
 public class UsersDaoHibernateImpl {
-    private static final Logger logger = Logger.getLogger(UsersDaoHibernateImpl.class);
 
     @Transactional
     public  void saveUser(User user) {
@@ -41,7 +40,7 @@ public class UsersDaoHibernateImpl {
            session.save(user);
            session.getTransaction().commit();
         } catch(Exception e) {
-           logger.error("error saving user",e.getCause());
+           e.printStackTrace();
         } finally{
             if(session != null && session.isOpen()) {
                 session.close();

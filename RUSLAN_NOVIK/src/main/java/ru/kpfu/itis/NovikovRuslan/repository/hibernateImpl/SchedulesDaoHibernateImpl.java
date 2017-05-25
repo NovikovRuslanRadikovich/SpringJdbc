@@ -15,7 +15,7 @@ import ru.kpfu.itis.NovikovRuslan.repository.factory.HibernateUtil;
 
 @Repository
 public class SchedulesDaoHibernateImpl {
-Logger logger = Logger.getLogger(SchedulesDaoHibernateImpl.class);
+
    @Transactional
     public void saveSchedule(Schedule schedule) {
         Session session = null;
@@ -25,7 +25,7 @@ Logger logger = Logger.getLogger(SchedulesDaoHibernateImpl.class);
             session.save(schedule);
             session.getTransaction().commit();
         }catch(Exception e){
-           logger.error("error saving schedule", e.getCause());
+           e.printStackTrace();
         } finally{
             if(session != null && session.isOpen()) {
                 session.close();

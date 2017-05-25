@@ -9,6 +9,9 @@ import org.aspectj.lang.reflect.MethodSignature;
 
 import org.springframework.stereotype.Component;
 import ru.kpfu.itis.NovikovRuslan.entities.Doctor;
+import ru.kpfu.itis.NovikovRuslan.entities.Polyclinic;
+import ru.kpfu.itis.NovikovRuslan.entities.Schedule;
+import ru.kpfu.itis.NovikovRuslan.entities.User;
 
 import java.lang.reflect.Method;
 
@@ -31,12 +34,23 @@ public class DaoExceptionLogger {
         logger.info("Successfully saved doctor with name" + doctor.getFio());
     }
 
+    @After("execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.DoctorsDaoHibernateImpl.deleteDoctor(..)) "
+           + "&& args(id)")
+    public void logAfterDeleting(Long id){logger.info("Successfully deleted doctor with id" + id);}
+
     @AfterReturning("execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.UsersDaoHibernateImpl.findUser(..)) "
             + "&& args(username)")
     public void logAfterReturning(String username) {
 
         logger.info("Found user with this" + username);
     }
+
+    @After("execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.UsersDaoHibernateImpl.saveUser(..)) "
+            + "&& args(user)")
+    public void logAfterSavingUser(User user){
+        logger.info("Successfully saved doctor with name" + user.getUsername());
+    }
+
 
     @Around("execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.PolyclinicsDaoHibernateImpl.getPolyclinic(..)) "
             + "&& args(id)"
@@ -51,6 +65,25 @@ public class DaoExceptionLogger {
         }catch(Throwable throwable) {
             logger.error("Method \"" + methodName +"\" called exception" + throwable.getMessage());
         }
+    }
+
+    @Around(" execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.PolyclinicsDaoHibernateImpl.savePolyclinic(..)) "
+            + "&& args(polyclinic)")
+    public void logAroundSaving(ProceedingJoinPoint joinPoint, Polyclinic polyclinic) {
+        String methodName = getMethodName(joinPoint);
+        logger.info("Method \"" + methodName + "\" is calling with argument = " + polyclinic.getPolyclinic_name() );
+        try{
+            joinPoint.proceed();
+            logger.info("Method \"" + methodName + "\" called");
+        }catch(Throwable throwable) {
+            logger.error("Method \"" + methodName +"\" called exception" + throwable.getMessage());
+        }
+    }
+
+    @After("execution(* ru.kpfu.itis.NovikovRuslan.repository.hibernateImpl.SchedulesDaoHibernateImpl.saveSchedule(..)) "
+            + "&& args(schedule)")
+    public void logAfterSavingSchedule(Schedule schedule){
+        logger.info("Successfully saved schedule for" + schedule.getDoctor().getFio());
     }
 
     private String getMethodName(ProceedingJoinPoint joinPoint) {

@@ -18,7 +18,6 @@ import java.util.List;
 
 @Repository
 public class PolyclinicsDaoHibernateImpl {
-   private static final Logger logger = Logger.getLogger(CitiesDaoHibernateImpl.class);
 
     public List getAllDoctors(Long polyclinic_id){
        Session session = HibernateUtil.getSessionFactory().openSession();
@@ -44,7 +43,7 @@ public class PolyclinicsDaoHibernateImpl {
            session.delete(polyclinic);
            session.getTransaction().commit();
        } catch(Exception e) {
-           logger.error("error deleting doctor",e.getCause());
+           e.printStackTrace();
        } finally{
            if (session != null && session.isOpen()) {
                session.close();
@@ -60,7 +59,7 @@ public class PolyclinicsDaoHibernateImpl {
             session.save(polyclinic);
             session.getTransaction().commit();
         } catch(Exception e){
-           logger.error("error saving polyclinic",e.getCause());
+           e.printStackTrace();
         } finally{
             if(session != null && session.isOpen()){
                 session.close();
@@ -81,7 +80,7 @@ public class PolyclinicsDaoHibernateImpl {
             session = HibernateUtil.getSessionFactory().openSession();
             polyclinic = (Polyclinic)session.createQuery("from Polyclinic where polyclinic_name =:name").setParameter("name",doctor_polyclinic).setMaxResults(1).uniqueResult();
         } catch(Exception e) {
-           logger.error("error retrieving polyclinic", e.getCause());
+           e.printStackTrace();
         } finally{
             if(session != null && session.isOpen()) {
                 session.close();
