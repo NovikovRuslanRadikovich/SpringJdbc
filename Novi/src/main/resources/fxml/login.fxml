@@ -7,8 +7,8 @@
 
 <?import javafx.scene.control.TextField?>
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0"
-            prefWidth="376.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.LoginController">
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ui.LoginController">
    <children>
        <Button layoutX="14.0" layoutY="149.0" mnemonicParsing="false" prefWidth="81.0" text="Registration" onAction="#registration"/>
        <Button layoutX="108.0" layoutY="149.0" mnemonicParsing="false" prefWidth="81.0" text="Enter" onAction="#enter"/>

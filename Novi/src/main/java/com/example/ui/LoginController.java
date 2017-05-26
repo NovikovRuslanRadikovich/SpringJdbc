@@ -12,12 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -52,24 +50,13 @@ public class LoginController extends EventHandling {
           String password = Password.getText();
 
           if("admin".equals(password) && "admin".equals(username)) {
-              Node toRegistrationSource = (Node) actionEvent.getSource();
-
-//              Stage loginStage = (Stage) toRegistrationSource.getScene().getWindow();
-//              loginStage.setScene(new Scene(autoreservationtabView.getView()));
-//              loginStage.show();
-//              FXMLLoader loader = new FXMLLoader();
-//              InputStream stream = getClass().getClassLoader().getResourceAsStream("fxml/autoreservationtab.fxml");
-//              loader.load(stream);
-
               changeSceneByEvent(actionEvent,autoreservationtabView,"AutoReservationPage");
 
           }
 
           List<User> users = usersServiceImpl.findFromUsernameAndPassword(username,password);
           if(users.size() >=1 ) {
-//               Node toAutomobiles = (Node) actionEvent.getSource();
-//               Stage loginStage = (Stage) toAutomobiles.getScene().getWindow();
-//               loginStage.setScene(new Scene(userautomobileView.getView()));
+
               changeSceneByEvent(actionEvent,userautomobileView,"UserAutoPage");
           } else {
               Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -83,10 +70,6 @@ public class LoginController extends EventHandling {
     @FXML
     public void registration(ActionEvent actionEvent) {
 
-//        Node toRegistrationSource = (Node) actionEvent.getSource();
-//        Stage loginStage = (Stage) toRegistrationSource.getScene().getWindow();
-//        loginStage.setScene(new Scene(registrationView.getView()));
-//        loginStage.show();
         changeSceneByEvent(actionEvent,registrationView,"RegistrationPage");
     }
 }

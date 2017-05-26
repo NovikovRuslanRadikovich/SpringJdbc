@@ -51,13 +51,13 @@ public  class EditAutomobilesController extends EventHandling {
     @FXML
     public void editAutomobile(ActionEvent actionEvent) {
         if(automobile == null ) {
-            automobile = new Automobile("dfvfd",1L,1L,1L,1L);
+            automobile = new Automobile("dfvfd","L","1","1","1");
         }
-        automobile.setModel(modelEdit.getText());
-        automobile.setPowerty(Long.valueOf(powerEdit.getText()));
-        automobile.setYear(Long.valueOf(yearEdit.getText()));
-        automobile.setProbeg(Long.valueOf(yearEdit.getText()));
-        automobile.setRentpay(Long.valueOf(rentpayEdit.getText()));
+        automobile.setAutomodel(modelEdit.getText());
+        automobile.setPowerty(powerEdit.getText());
+        automobile.setYear(yearEdit.getText());
+        automobile.setProbeg(yearEdit.getText());
+        automobile.setRentpay(rentpayEdit.getText());
 
         automobilesService.update(automobile);
 
@@ -75,7 +75,7 @@ public  class EditAutomobilesController extends EventHandling {
     }
 
     public void setAutomobile(Automobile automobile) {
-        modelEdit.setText(automobile.getModel());
+        modelEdit.setText(automobile.getAutomodel());
         yearEdit.setText(String.valueOf(automobile.getYear()));
         probegEdit.setText(String.valueOf(automobile.getProbeg()));
         powerEdit.setText(String.valueOf(automobile.getPowerty()));

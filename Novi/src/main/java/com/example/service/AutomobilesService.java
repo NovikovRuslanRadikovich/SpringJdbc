@@ -18,7 +18,7 @@ public interface AutomobilesService {
 
     void delete(Automobile automobile);
 
-     Automobile findByModel(String autoModel);
+     Automobile findFromModel(String autoModel);
 
 
 }

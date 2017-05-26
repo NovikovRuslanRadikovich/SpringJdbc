@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<TabPane prefHeight="300.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1"
+<TabPane prefHeight="400.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="com.example.ui.AutoReservationTabController">
     <Tab text="automobiles">
         <HBox alignment="CENTER" layoutX="21.0" layoutY="207.0" prefHeight="50.0" prefWidth="300.0">
@@ -19,7 +19,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                     </columnResizePolicy>
                 </TableView>
-                <TextField fx:id="model" promptText="Модель">
+                <TextField fx:id="automodel" promptText="Модель">
                     <HBox.margin>
                         <Insets right="3.0"/>
                     </HBox.margin>

@@ -18,7 +18,7 @@ public class ReservationsServiceImpl implements ReservationsService {
     ReservationsRepository reservationsRepository;
 
     @PostConstruct
-    public void generateTestData() {
+    public void generateData() {
           save(new Reservation("sidney","123","bmw","2005/11/16","2006/03/12"));
           save(new Reservation("evgeny","123","bmw","2004/11/16","2009/03/12"));
           save(new Reservation("ruslan","123","bmw","2005/11/16","2006/03/12"));
@@ -33,7 +33,7 @@ public class ReservationsServiceImpl implements ReservationsService {
 
     @Override
     public List<Reservation> findAll() {
-        return null;
+       return reservationsRepository.findAll();
     }
 
     @Override
@@ -41,4 +41,7 @@ public class ReservationsServiceImpl implements ReservationsService {
 
     @Override
     public void save(Reservation reservation) {reservationsRepository.save(reservation);}
+
+    @Override
+    public void update(Reservation reservation) {reservationsRepository.save(reservation);}
 }

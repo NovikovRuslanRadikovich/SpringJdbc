@@ -15,4 +15,6 @@ public interface ReservationsService {
     void delete(Reservation reservation);
 
     void save(Reservation reservation);
+
+    void update(Reservation reservation);
 }

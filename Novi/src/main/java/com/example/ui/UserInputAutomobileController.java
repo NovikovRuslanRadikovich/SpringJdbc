@@ -3,6 +3,7 @@ package com.example.ui;
 
 import com.example.ConfigurationControllers;
 import com.example.service.AutomobilesService;
+import com.example.validation.ReservationValid;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import java.text.ParseException;
 
 public class UserInputAutomobileController extends EventHandling {
 
@@ -35,14 +38,13 @@ public class UserInputAutomobileController extends EventHandling {
     }
 
     @FXML
-    public void confirmReservation(ActionEvent actionEvent) {
-        String name = username.getText();
-        String tele = telephone.getText();
-        String mod = model.getText();
-        String give = give_date.getText();
-        String back = back_date.getText();
+    public void confirmReservation(ActionEvent actionEvent) throws ParseException {
 
-        if(automobilesService.findByModel(mod) != null) {
+        ReservationValid Valid = new ReservationValid();
+
+        if(Valid.validateByEndDate(back_date.getText())
+                && Valid.validateByStartDate(give_date.getText()) &&
+                Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thanksgiving");
             alert.setHeaderText("Thanks for your choice");
@@ -56,12 +58,18 @@ public class UserInputAutomobileController extends EventHandling {
             give_date.setText("");
             back_date.setText("");
 
-        } else {
+        } else if(automobilesService.findFromModel(model.getText()) == null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Fail");
-            alert.setTitle("No such model");
+            alert.setHeaderText("No such model");
             alert.setContentText("Correct the model of the car");
 
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Wrong input!");
+            alert.setHeaderText("Incorrect data format");
+            alert.setContentText("Please, verify give_data and back_data");
             alert.showAndWait();
         }
 
@@ -69,11 +77,7 @@ public class UserInputAutomobileController extends EventHandling {
 
     @FXML
     public void cancelReservation(ActionEvent actionEvent) {
-//        Node toAutomobile = (Node) actionEvent.getSource();
-//
-//        Stage stage = (Stage) toAutomobile.getScene().getWindow();
-//        stage.setScene(new Scene(userautomobileView.getView()));//на userautomobile
-//        stage.show();
+
         changeSceneByEvent(actionEvent,userautomobileView,"UserAutomobile");
     }
 }

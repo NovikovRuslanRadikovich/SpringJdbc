@@ -18,13 +18,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -51,10 +51,18 @@ public class AutoReservationTabController extends EventHandling{
 
     public TableView autotable;
     public TextField year;
-    public TextField model;
+    public TextField automodel;
     public TextField probeg;
     public TextField powerty;
     public TextField rentpay;
+
+
+    public TableView reservationtable;
+    public TextField username;
+    public TextField telephone;
+    public TextField reservationmodel;
+    public TextField give_date;
+    public TextField back_date;
 
     private ObservableList<Automobile> dataAutomobile;
 
@@ -73,7 +81,7 @@ public class AutoReservationTabController extends EventHandling{
         }
 
         TableColumn<Automobile,String> modelColumn = new TableColumn<>("Model");
-        modelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
+        modelColumn.setCellValueFactory(new PropertyValueFactory<>("automodel"));
 
         TableColumn<Automobile, String> yearColumn = new TableColumn<>("Год");
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
@@ -121,15 +129,15 @@ public class AutoReservationTabController extends EventHandling{
 
     @FXML
     public void addCar() {
-        Automobile automobile = new Automobile(model.getText(), Long.valueOf(year.getText())
-                , Long.valueOf(probeg.getText()), Long.valueOf(powerty.getText()), Long.valueOf(rentpay.getText()));
         AutomobileValid autoValid = new AutomobileValid();
         if(autoValid.validateByPowerty(powerty.getText()) && autoValid.validateByProbeg(probeg.getText())
                 && autoValid.validateByRentpay(rentpay.getText())
                 && autoValid.validateByYear(year.getText())) {
+            Automobile automobile = new Automobile(automodel.getText(), year.getText()
+                    , probeg.getText(), powerty.getText(),rentpay.getText());
              automobileServiceImpl.save(automobile);
              dataAutomobile.add(automobile);
-             model.setText("");
+             automodel.setText("");
              year.setText("");
              probeg.setText("");
              powerty.setText("");
@@ -137,8 +145,8 @@ public class AutoReservationTabController extends EventHandling{
          }else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Wrong data");
-            alert.setHeaderText("Check data for reservation!");
-            alert.setContentText("Impossible to add reservation with such parameters");
+            alert.setHeaderText("Check data for automobile!");
+            alert.setContentText("Impossible to add automobile with such parameters");
             alert.showAndWait();
         }
     }
@@ -151,7 +159,14 @@ public class AutoReservationTabController extends EventHandling{
         if(index >= 0) {
             automobileServiceImpl.delete(automobile);
             dataAutomobile.remove(index);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Automobile Selected");
+            alert.setContentText("Please select an automobile in the table");
+            alert.showAndWait();
         }
+
     }
 
     @FXML
@@ -176,40 +191,40 @@ public class AutoReservationTabController extends EventHandling{
        }
        EditAutomobilesController editAutoController = (EditAutomobilesController) editAutoView.getController();
        editAutoController.setAutomobile(automobile);
-        autoEditStage.show();
+        autoEditStage.showAndWait();
+
+        List<Automobile> automobiles = automobileServiceImpl.findAll();
+
+        if(automobiles != null) {
+            dataAutomobile = FXCollections.observableArrayList(automobiles);
+        }
+
+        autotable.setItems(dataAutomobile);
+
     }
 
-
-    public TableView reservationtable;
-    public TextField username;
-    public TextField telephone;
-    public TextField reservationmodel;
-    public TextField give_date;
-    public TextField back_date;
-
     @FXML
-    public void addReservation() {
-        Reservation reservation = new Reservation(username.getText(),telephone.getText(),reservationmodel.getText(),
-                give_date.getText(),back_date.getText());
+    public void addReservation() throws ParseException {
 
         ReservationValid Valid = new ReservationValid();
-       if(Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())
-           && Valid.validateByEndDate(back_date.getText()) && Valid.validateByExistenceOfAutomobile(model.getText())
-               && Valid.validateByStartDate(give_date.getText())) {
+       if(Valid.validateByEndDate(back_date.getText())
+               && Valid.validateByStartDate(give_date.getText()) &&
+        Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())
+              ) {
+           Reservation reservation = new Reservation(username.getText(),telephone.getText(),reservationmodel.getText(),
+                   give_date.getText(),back_date.getText());
            reservationsServiceImpl.save(reservation);
            dataReservation.add(reservation);
            username.setText("");
            telephone.setText("");
-           model.setText("");
+           reservationmodel.setText("");
            give_date.setText("");
            back_date.setText("");
        } else {
            Alert alert = new Alert(Alert.AlertType.WARNING);
-
            alert.setTitle("Wrong data");
            alert.setHeaderText("Check data for reservation!");
            alert.setContentText("Impossible to add reservation with such parameters");
-
            alert.showAndWait();
        }
     }
@@ -221,6 +236,12 @@ public class AutoReservationTabController extends EventHandling{
         if(index >= 0) {
             reservationsServiceImpl.delete(reservation);
             dataReservation.remove(index);
+        } else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Reservation Selected");
+            alert.setContentText("Please select a reservation in the table");
+            alert.showAndWait();
         }
     }
 
@@ -248,6 +269,15 @@ public class AutoReservationTabController extends EventHandling{
 
         EditReservationController editReservationController = (EditReservationController) editReservationView.getController();
         editReservationController.setReservation(selectedReservation);
-        reservationEditStage.show();
+        reservationEditStage.showAndWait();
+
+
+        List<Reservation> reservations = reservationsServiceImpl.findAll();
+
+        if(reservations != null) {
+            dataReservation = FXCollections.observableArrayList(reservations);
+        }
+
+        reservationtable.setItems(dataReservation);
     }
 }

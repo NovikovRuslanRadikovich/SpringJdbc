@@ -2,8 +2,11 @@ package com.example.validation;
 
 
 import com.example.service.AutomobilesService;
+import javafx.scene.control.DatePicker;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -17,28 +20,31 @@ public class ReservationValid {
     @Autowired
     AutomobilesService automobiles;
 
-    private  Pattern pattern = Pattern.compile(DATE_PATTERN);
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+    private Pattern pattern = Pattern.compile(DATE_PATTERN);
     private Matcher matcher;
-    private Matcher matcher2;
 
     private static final String DATE_PATTERN = "((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])";
 
     //Date format yyyy/MM/dd
 
-    public  boolean validateByStartDate(String reservationStart) {
-        Date date = new Date();
-        Calendar calendarNow = Calendar.getInstance();
-        calendarNow.setTime(date);
+    public boolean validateByStartDate(String reservationStart) throws ParseException {
 
-        Calendar start = Calendar.getInstance();
+        if(reservationStart.isEmpty()) {
+            return false;
+        }
+
         matcher = pattern.matcher(reservationStart);
-        start.set(Integer.valueOf(matcher.group(1)),
-                Integer.valueOf(matcher.group(2)),
-                Integer.valueOf(matcher.group(3)));
 
+        if(!matcher.matches()) {
+            return false;
+        }
 
+        Date date = new Date();
+        Date start1 = dateFormat.parse(reservationStart);
 
-        if(matcher.matches() && !start.after(calendarNow)) {
+        if (start1.after(date)) {
             matcher.reset();
             return true;
         }
@@ -46,11 +52,22 @@ public class ReservationValid {
         return false;
     }
 
-    public  boolean validateByEndDate(String reservationEnd) {
+    public boolean validateByEndDate(String reservationEnd) throws ParseException {
+
+        if(reservationEnd.isEmpty()) {
+            return false;
+        }
 
         matcher = pattern.matcher(reservationEnd);
 
-        if(matcher.matches()) {
+        if(!matcher.matches()) {
+            return false;
+        }
+
+        Date date = new Date();
+        Date end1 = dateFormat.parse(reservationEnd);
+
+        if ( end1.after(date)) {
             matcher.reset();
             return true;
         }
@@ -59,35 +76,24 @@ public class ReservationValid {
     }
 
 
-    public  boolean validateByComparingStartAndEndDates(String reservationStart, String reservationEnd){
+    public boolean validateByComparingStartAndEndDates(String reservationStart, String reservationEnd) throws ParseException {
+        Date start = dateFormat.parse(reservationStart);
+        Date end = dateFormat.parse(reservationEnd);
 
-        matcher = pattern.matcher(reservationStart);
-        matcher2 = pattern.matcher(reservationEnd);
-
-        Calendar start = Calendar.getInstance();
-        Calendar end = Calendar.getInstance();
-
-        start.set(Integer.valueOf(matcher.group(1)),
-                Integer.valueOf(matcher.group(2)),
-                Integer.valueOf(matcher.group(3)));
-
-        end.set(Integer.valueOf(matcher2.group(1)),
-                Integer.valueOf(matcher2.group(2)),
-                Integer.valueOf(matcher2.group(3)));
-
-        if(start.before(end)) {
+        if (start.before(end)) {
             return true;
         }
         return false;
     }
 
-    public boolean validateByExistenceOfAutomobile(String autoModel) {
-
-        if(automobiles.findByModel(autoModel) != null) {
+    public boolean validateByExistenceOfAuto(String autoName) {
+        if(autoName.isEmpty()){
+            return false;
+        }
+        if(automobiles.findFromModel(autoName) != null ) {
             return true;
         }
+
         return false;
     }
-
-
 }

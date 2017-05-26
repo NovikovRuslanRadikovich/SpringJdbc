@@ -1,8 +1,11 @@
 package com.example.service;
 
 import com.example.entities.Automobile;
+import com.example.entities.specifications.AutoSpecs;
+import com.example.entities.specifications.UserSpecs;
 import com.example.repository.AutomobilesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +22,10 @@ public class AutomobileServiceImpl implements AutomobilesService  {
 
     @PostConstruct
     public void generateTestData(){
-        save(new Automobile("bmw", 1L, 1L, 1L, 1L));
-        save(new Automobile("mercedes", 1L, 1L, 1L, 1L));
-        save(new Automobile("audi", 1L, 1L, 1L, 1L));
-        save(new Automobile("maybach", 1L, 1L, 1L, 1L));
+        save(new Automobile("bmw", "1", "1", "1", "1"));
+        save(new Automobile("mercedes", "1", "1","1" , "1"));
+        save(new Automobile("audi", "1", "1","1" , "1"));
+        save(new Automobile("maybach", "1", "1","1" , "1"));
     }
 
     @Override
@@ -30,7 +33,6 @@ public class AutomobileServiceImpl implements AutomobilesService  {
 
     @Override
     public void update(Automobile automobile) {
-        automobilesRepository.delete(automobile);
         automobilesRepository.save(automobile);
     }
 
@@ -43,8 +45,9 @@ public class AutomobileServiceImpl implements AutomobilesService  {
     @Override
     public void delete(Automobile automobile) {automobilesRepository.delete(automobile);}
 
-
-    public Automobile findByModel(String autoName) {return automobilesRepository.findByModel(autoName);}
-
+    @Override
+    public Automobile findFromModel(String autoModel) {
+        return automobilesRepository.findOne(Specifications.where(AutoSpecs.checkParam(autoModel)));
+    }
 
 }

@@ -43,7 +43,7 @@ public class ClientsAutomobilesController extends EventHandling{
         data = FXCollections.observableArrayList(automobiles);
 
         TableColumn<Automobile,String> modelColumn = new TableColumn<>("Model");
-        modelColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        modelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
 
         TableColumn<Automobile, String> yearColumn = new TableColumn<>("Год");
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));

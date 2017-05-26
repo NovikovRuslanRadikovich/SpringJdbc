@@ -13,24 +13,24 @@ public class Automobile {
     Long id;
 
     @Column
-    String model;
+    String automodel;
 
     @Column
-    Long year;
+    String year;
 
     @Column
-    Long probeg;
+    String probeg;
 
     @Column
-    Long powerty;
+    String powerty;
 
     @Column
-    Long rentpay;
+    String rentpay;
 
     public Automobile(){}
 
-    public Automobile(String model, Long year, Long probeg, Long powerty, Long rentpay ){
-        this.model = model;
+    public Automobile(String model, String  year, String probeg, String powerty, String rentpay ){
+        this.automodel = model;
         this.year = year;
         this.probeg = probeg;
         this.powerty = powerty;
@@ -42,23 +42,23 @@ public class Automobile {
 
     public void setId(Long id) {this.id = id;}
 
-    public String getModel() {return model;}
+    public String getAutomodel() {return automodel;}
 
-    public void setModel(String model) {this.model = model;}
+    public void setAutomodel(String model) {this.automodel = model;}
 
-    public Long getYear() {return year;}
+    public String getYear() {return year;}
 
-    public void setYear(Long year) {this.year = year;}
+    public void setYear(String year) {this.year = year;}
 
-    public Long getProbeg() {return probeg;}
+    public String getProbeg() {return probeg;}
 
-    public void setProbeg(Long probeg) {this.probeg = probeg;}
+    public void setProbeg(String probeg) {this.probeg = probeg;}
 
-    public Long getPowerty() {return powerty;}
+    public String getPowerty() {return powerty;}
 
-    public void setPowerty(Long powerty) {this.powerty = powerty;}
+    public void setPowerty(String powerty) {this.powerty = powerty;}
 
-    public Long getRentpay() {return rentpay;}
+    public String getRentpay() {return rentpay;}
 
-    public void setRentpay(Long rentpay) {this.rentpay = rentpay;}
+    public void setRentpay(String rentpay) {this.rentpay = rentpay;}
 }
