@@ -37,7 +37,7 @@
                 </TextField>
                 <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addReservation" text="Добавить" />
                 <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteReservation" text="Удалить" />
-                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#editReservation" text="Изменить" />
+                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEditReservation" text="Изменить" />
             </children>
         </HBox>
     </children>

@@ -10,15 +10,15 @@ public interface AutomobilesService {
 
     List<Automobile> findAll();
 
+    void update(Automobile automobile);
+
     void delete(Long ID);
 
     void save(Automobile automobile);
 
     void delete(Automobile automobile);
 
-   Automobile findByModel(String autoModel);
+     Automobile findByModel(String autoModel);
 
-//    Automobile findByModel(String autoName);
-//
-//    Automobile findByModel(String autoName);
+
 }

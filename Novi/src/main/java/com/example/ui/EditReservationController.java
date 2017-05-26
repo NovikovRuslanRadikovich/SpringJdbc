@@ -2,6 +2,7 @@ package com.example.ui;
 
 import com.example.ConfigurationControllers;
 import com.example.entities.Automobile;
+import com.example.entities.Reservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -30,6 +31,14 @@ public class EditReservationController extends EventHandling{
 
     public void exit(ActionEvent actionEvent) {
         changeSceneByEvent(actionEvent,autoreservationView,"AutoReservePage");
+    }
+
+    public void setReservation(Reservation reservation) {
+        usernameEdit.setText(reservation.getUsername());
+        telephoneEdit.setText(String.valueOf(reservation.getTelephone()));
+        modelEdit.setText(String.valueOf(reservation.getReservationmodel()));
+        give_dataEdit.setText(String.valueOf(reservation.getStartdate()));
+        back_dateEdit.setText(String.valueOf(reservation.getEnddate()));
     }
 
 }

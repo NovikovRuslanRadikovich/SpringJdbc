@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import com.example.entities.Automobile;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface  AutomobilesRepository extends CrudRepository<Automobile, Long> {
+public interface AutomobilesRepository extends CrudRepository<Automobile, Long>  {
 
     List<Automobile> findAll();
 
@@ -21,5 +22,6 @@ public interface  AutomobilesRepository extends CrudRepository<Automobile, Long>
     void delete(Automobile automobile);
 
     Automobile findByModel(String modelName);
+
 
 }

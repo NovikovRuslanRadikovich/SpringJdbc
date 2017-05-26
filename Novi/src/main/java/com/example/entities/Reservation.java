@@ -17,7 +17,7 @@ public class Reservation {
     String telephone;
 
     @Column
-    String model;
+    String reservationmodel;
 
     @Column
     String give_date;
@@ -31,7 +31,7 @@ public class Reservation {
                        String back_date){
         this.username = username;
         this.telephone = telephone;
-        this.model = model;
+        this.reservationmodel = model;
         this.give_date = give_date;
         this.back_date = back_date;
     }
@@ -47,9 +47,9 @@ public class Reservation {
 
     public void setTelephone(String telephone) {this.telephone = telephone;}
 
-    public String getModel() {return model;}
+    public String getReservationmodel() {return reservationmodel;}
 
-    public void setModel(String model) {this.model = model;}
+    public void setReservationmodel(String model) {this.reservationmodel = model;}
 
     public String getStartdate() {return give_date;}
 

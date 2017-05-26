@@ -20,19 +20,6 @@ public class Application extends AbstractJavaFxApplicationSupport {
 	@Autowired
 	private ConfigurationControllers.View enterView;
 
-	@Qualifier("automobileView")
-	@Autowired
-	private ConfigurationControllers.View automobileView;
-
-	@Qualifier("registrationView")
-	@Autowired
-	private ConfigurationControllers.View registrationView;
-
-	@Qualifier("reservationView")
-	@Autowired
-	private ConfigurationControllers.View reservationView;
-
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 

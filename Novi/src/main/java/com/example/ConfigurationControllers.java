@@ -34,26 +34,6 @@ public class ConfigurationControllers {
         return (RegistrationController) getRegistrationView().getController();
     }
 
-    @Bean(name = "reservationView")
-    public View getReservationView() throws IOException {
-        return loadView("fxml/reservation.fxml");
-    }
-
-    @Bean
-    public ReservationController getReservationController() throws IOException {
-        return (ReservationController) getReservationView().getController();
-    }
-
-    @Bean(name = "automobileView")
-    public View getAutomobilesView() throws IOException {
-        return loadView("fxml/automobile.fxml");
-    }
-
-    @Bean
-    public AutomobilesController getAutomobilesController() throws IOException {
-        return (AutomobilesController) getAutomobilesView().getController();
-    }
-
      @Bean(name = "autoreservationtabView")
      public View getAutoReservationTabView() throws IOException {
         return loadView("fxml/autoreservationtab.fxml");
@@ -88,6 +68,16 @@ public class ConfigurationControllers {
       public EditAutomobilesController getEditAutomobilesController() throws IOException {
         return (EditAutomobilesController) getEditAutomobileView().getController();
       }
+
+       @Bean(name = "editreservationView")
+       public View getEditReservationView() throws IOException {
+          return loadView("fxml/editreservation.fxml");
+       }
+
+       @Bean
+       public EditReservationController getEditReservationController() throws IOException {
+            return (EditReservationController) getEditReservationView().getController();
+       }
 
       @Bean
       public ClientsAutomobilesController getUserAutomobileController() throws IOException {

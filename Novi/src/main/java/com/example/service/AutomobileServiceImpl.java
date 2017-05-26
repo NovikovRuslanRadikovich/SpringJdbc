@@ -29,6 +29,12 @@ public class AutomobileServiceImpl implements AutomobilesService  {
     public List<Automobile> findAll() {return automobilesRepository.findAll();}
 
     @Override
+    public void update(Automobile automobile) {
+        automobilesRepository.delete(automobile);
+        automobilesRepository.save(automobile);
+    }
+
+    @Override
     public void delete(Long ID) {automobilesRepository.delete(ID);}
 
     @Override

@@ -2,21 +2,29 @@ package com.example.ui;
 
 import com.example.ConfigurationControllers;
 import com.example.entities.Automobile;
+import com.example.service.AutomobilesService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.io.InputStream;
+
 
 
 public  class EditAutomobilesController extends EventHandling {
+
+    private Automobile automobile;
+
+    @Autowired
+    AutomobilesService automobilesService;
 
     @Qualifier("editautomobileView")
     @Autowired
@@ -42,21 +50,35 @@ public  class EditAutomobilesController extends EventHandling {
 
     @FXML
     public void editAutomobile(ActionEvent actionEvent) {
+        if(automobile == null ) {
+            automobile = new Automobile("dfvfd",1L,1L,1L,1L);
+        }
+        automobile.setModel(modelEdit.getText());
+        automobile.setPowerty(Long.valueOf(powerEdit.getText()));
+        automobile.setYear(Long.valueOf(yearEdit.getText()));
+        automobile.setProbeg(Long.valueOf(yearEdit.getText()));
+        automobile.setRentpay(Long.valueOf(rentpayEdit.getText()));
+
+        automobilesService.update(automobile);
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        stage.close();
+
     }
 
     @FXML
     public void exit(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        stage.close();
     }
 
-
-    public void show(Automobile automobile) throws IOException {
-            modelEdit.setText(automobile.getModel());
-           yearEdit.setText(String.valueOf(automobile.getYear()));
-           probegEdit.setText(String.valueOf(automobile.getYear()));
-           powerEdit.setText(String.valueOf(automobile.getYear()));
-           rentpayEdit.setText(String.valueOf(automobile.getYear()));
-
-           createNewStage(editAutoView,"EditAuto");
-
+    public void setAutomobile(Automobile automobile) {
+        modelEdit.setText(automobile.getModel());
+        yearEdit.setText(String.valueOf(automobile.getYear()));
+        probegEdit.setText(String.valueOf(automobile.getProbeg()));
+        powerEdit.setText(String.valueOf(automobile.getPowerty()));
+        rentpayEdit.setText(String.valueOf(automobile.getRentpay()));
     }
 }
