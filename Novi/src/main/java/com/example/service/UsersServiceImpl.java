@@ -44,4 +44,9 @@ public class UsersServiceImpl implements UsersService {
     public List<User> findFromUsernameAndPassword(String username, String password) {
         return usersRepository.findAll(Specifications.where(UserSpecs.checkParams(username,password)));
     }
+
+    @Override
+    public List<User> findFromUsernameAndTelephone(String username, String telephone) {
+        return usersRepository.findAll(Specifications.where(UserSpecs.checkParams2(username,telephone)));
+    }
 }

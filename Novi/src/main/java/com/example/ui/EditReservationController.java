@@ -39,10 +39,10 @@ public class EditReservationController extends EventHandling{
             reservation = new Reservation("a","a","a","a","a");
         }
         reservation.setUsername(usernameEdit.getText());
-        reservation.setEnddate(telephoneEdit.getText());
-        reservation.setStartdate(modelEdit.getText());
-        reservation.setTelephone(give_dataEdit.getText());
-        reservation.setReservationmodel(back_dateEdit.getText());
+        reservation.setTelephone(telephoneEdit.getText());
+        reservation.setReservationmodel(modelEdit.getText());
+        reservation.setGive_date(give_dataEdit.getText());
+        reservation.setBack_date(back_dateEdit.getText());
 
         reservationService.update(reservation);
 
@@ -59,8 +59,8 @@ public class EditReservationController extends EventHandling{
         usernameEdit.setText(reservation.getUsername());
         telephoneEdit.setText(String.valueOf(reservation.getTelephone()));
         modelEdit.setText(String.valueOf(reservation.getReservationmodel()));
-        give_dataEdit.setText(String.valueOf(reservation.getStartdate()));
-        back_dateEdit.setText(String.valueOf(reservation.getEnddate()));
+        give_dataEdit.setText(String.valueOf(reservation.getGive_date()));
+        back_dateEdit.setText(String.valueOf(reservation.getBack_date()));
     }
 
 }

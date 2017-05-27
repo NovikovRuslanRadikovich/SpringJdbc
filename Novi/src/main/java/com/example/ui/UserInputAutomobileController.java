@@ -3,6 +3,7 @@ package com.example.ui;
 
 import com.example.ConfigurationControllers;
 import com.example.service.AutomobilesService;
+import com.example.service.UsersService;
 import com.example.validation.ReservationValid;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,9 @@ public class UserInputAutomobileController extends EventHandling {
     @Autowired
     AutomobilesService automobilesService;
 
+    @Autowired
+    UsersService usersService;
+
     @FXML public TableView table;
     @FXML public TextField username;
     @FXML public TextField telephone;
@@ -44,7 +48,8 @@ public class UserInputAutomobileController extends EventHandling {
 
         if(Valid.validateByEndDate(back_date.getText())
                 && Valid.validateByStartDate(give_date.getText()) &&
-                Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())) {
+                Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())
+              ) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Thanksgiving");
             alert.setHeaderText("Thanks for your choice");
@@ -63,9 +68,9 @@ public class UserInputAutomobileController extends EventHandling {
             alert.setTitle("Fail");
             alert.setHeaderText("No such model");
             alert.setContentText("Correct the model of the car");
-
             alert.showAndWait();
-        } else {
+        }
+        else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Wrong input!");
             alert.setHeaderText("Incorrect data format");

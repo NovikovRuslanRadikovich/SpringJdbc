@@ -1,7 +1,9 @@
 package com.example.validation;
 
 
+import com.example.entities.User;
 import com.example.service.AutomobilesService;
+import com.example.service.UsersService;
 import javafx.scene.control.DatePicker;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +22,9 @@ public class ReservationValid {
 
     @Autowired
     AutomobilesService automobiles;
+
+    @Autowired
+    UsersService users;
 
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -94,6 +100,13 @@ public class ReservationValid {
             return true;
         }
 
+        return false;
+    }
+
+    public boolean validateByUserExistence(String username, String telephone) {
+        if(users.findFromUsernameAndTelephone(username,telephone).size() >= 1) {
+            return true;
+        }
         return false;
     }
 }

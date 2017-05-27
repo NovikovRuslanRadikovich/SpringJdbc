@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public interface UsersRepository extends CrudRepository<User,Long> , JpaSpecificationExecutor<User> {
@@ -15,4 +17,5 @@ public interface UsersRepository extends CrudRepository<User,Long> , JpaSpecific
 
     User save(User user);
 
+    List<User> findAll();
 }

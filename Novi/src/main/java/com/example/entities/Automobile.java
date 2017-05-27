@@ -29,8 +29,8 @@ public class Automobile {
 
     public Automobile(){}
 
-    public Automobile(String model, String  year, String probeg, String powerty, String rentpay ){
-        this.automodel = model;
+    public Automobile(String automodel, String  year, String probeg, String powerty, String rentpay ){
+        this.automodel = automodel;
         this.year = year;
         this.probeg = probeg;
         this.powerty = powerty;
@@ -44,7 +44,7 @@ public class Automobile {
 
     public String getAutomodel() {return automodel;}
 
-    public void setAutomodel(String model) {this.automodel = model;}
+    public void setAutomodel(String automodel) {this.automodel = automodel;}
 
     public String getYear() {return year;}
 

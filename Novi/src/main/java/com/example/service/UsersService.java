@@ -12,4 +12,6 @@ public interface UsersService {
     User save(User user);
 
     List<User> findFromUsernameAndPassword(String username,String password);
+
+    List<User> findFromUsernameAndTelephone(String username, String telephone);
 }

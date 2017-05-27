@@ -80,8 +80,8 @@ public class AutoReservationTabController extends EventHandling{
             dataAutomobile = FXCollections.observableArrayList(automobiles);
         }
 
-        TableColumn<Automobile,String> modelColumn = new TableColumn<>("Model");
-        modelColumn.setCellValueFactory(new PropertyValueFactory<>("automodel"));
+        TableColumn<Automobile,String> automodelColumn = new TableColumn<>("Model");
+        automodelColumn.setCellValueFactory(new PropertyValueFactory<>("automodel"));
 
         TableColumn<Automobile, String> yearColumn = new TableColumn<>("Год");
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
@@ -95,7 +95,7 @@ public class AutoReservationTabController extends EventHandling{
         TableColumn<Automobile, String> rentpayColumn = new TableColumn<>("Аренда");
         rentpayColumn.setCellValueFactory(new PropertyValueFactory<>("rentpay"));
 
-        autotable.getColumns().setAll(modelColumn, yearColumn, probegColumn, powertyColumn, rentpayColumn);
+        autotable.getColumns().setAll(automodelColumn, yearColumn, probegColumn, powertyColumn, rentpayColumn);
 
         autotable.setItems(dataAutomobile);
 
@@ -106,22 +106,22 @@ public class AutoReservationTabController extends EventHandling{
             dataReservation = FXCollections.observableArrayList(reservations);
         }
 
-        TableColumn<Automobile,String> clientColumn = new TableColumn<>("Клинет");
-        clientColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        TableColumn<Automobile,String> usernameColumn = new TableColumn<>("Клинет");
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
-        TableColumn<Automobile, String> telephoneReservationColumn = new TableColumn<>("Телефон");
-        yearColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+        TableColumn<Automobile, String> telephoneColumn = new TableColumn<>("Телефон");
+        telephoneColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
 
-        TableColumn<Automobile, String> modelReservationColumn = new TableColumn<>("Модель");
-        modelColumn.setCellValueFactory(new PropertyValueFactory<>("reservationmodel"));
+        TableColumn<Automobile, String> reservationmodelColumn = new TableColumn<>("Модель");
+        reservationmodelColumn.setCellValueFactory(new PropertyValueFactory<>("reservationmodel"));
 
-        TableColumn<Automobile, String> startColumn = new TableColumn<>("Выдача");
-        startColumn.setCellValueFactory(new PropertyValueFactory<>("give_date"));
+        TableColumn<Automobile, String> give_dateColumn = new TableColumn<>("Выдача");
+        give_dateColumn.setCellValueFactory(new PropertyValueFactory<>("give_date"));
 
-        TableColumn<Automobile, String> endColumn = new TableColumn<>("Возврат");
-        endColumn.setCellValueFactory(new PropertyValueFactory<>("back_date"));
+        TableColumn<Automobile, String> back_dateColumn = new TableColumn<>("Возврат");
+        back_dateColumn.setCellValueFactory(new PropertyValueFactory<>("back_date"));
 
-        reservationtable.getColumns().setAll(clientColumn, telephoneReservationColumn, modelReservationColumn, startColumn, endColumn);
+        reservationtable.getColumns().setAll(usernameColumn, telephoneColumn, reservationmodelColumn, give_dateColumn, back_dateColumn);
 
         reservationtable.setItems(dataReservation);
     }
@@ -209,8 +209,7 @@ public class AutoReservationTabController extends EventHandling{
         ReservationValid Valid = new ReservationValid();
        if(Valid.validateByEndDate(back_date.getText())
                && Valid.validateByStartDate(give_date.getText()) &&
-        Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())
-              ) {
+        Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())) {
            Reservation reservation = new Reservation(username.getText(),telephone.getText(),reservationmodel.getText(),
                    give_date.getText(),back_date.getText());
            reservationsServiceImpl.save(reservation);
@@ -220,7 +219,7 @@ public class AutoReservationTabController extends EventHandling{
            reservationmodel.setText("");
            give_date.setText("");
            back_date.setText("");
-       } else {
+       }else {
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Wrong data");
            alert.setHeaderText("Check data for reservation!");

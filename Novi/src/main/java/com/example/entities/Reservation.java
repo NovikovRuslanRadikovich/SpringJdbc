@@ -51,12 +51,12 @@ public class Reservation {
 
     public void setReservationmodel(String model) {this.reservationmodel = model;}
 
-    public String getStartdate() {return give_date;}
+    public String getGive_date() {return give_date;}
 
-    public void setStartdate(String give_date) {this.give_date = give_date;}
+    public void setGive_date(String give_date) {this.give_date = give_date;}
 
-    public String getEnddate() {return back_date;}
+    public String getBack_date() {return back_date;}
 
-    public void setEnddate(String back_date) {this.back_date = back_date;}
+    public void setBack_date(String back_date) {this.back_date = back_date;}
 
 }

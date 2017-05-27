@@ -42,8 +42,8 @@ public class ClientsAutomobilesController extends EventHandling{
         List<Automobile> automobiles = automobileServiceImpl.findAll();
         data = FXCollections.observableArrayList(automobiles);
 
-        TableColumn<Automobile,String> modelColumn = new TableColumn<>("Model");
-        modelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
+        TableColumn<Automobile,String> automodelColumn = new TableColumn<>("Model");
+        automodelColumn.setCellValueFactory(new PropertyValueFactory<>("automodel"));
 
         TableColumn<Automobile, String> yearColumn = new TableColumn<>("Год");
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
@@ -57,7 +57,7 @@ public class ClientsAutomobilesController extends EventHandling{
         TableColumn<Automobile, String> rentpayColumn = new TableColumn<>("Аренда");
         rentpayColumn.setCellValueFactory(new PropertyValueFactory<>("rentpay"));
 
-        table.getColumns().setAll(modelColumn, yearColumn, probegColumn, powertyColumn, rentpayColumn);
+        table.getColumns().setAll(automodelColumn, yearColumn, probegColumn, powertyColumn, rentpayColumn);
 
         table.setItems(data);
     }
