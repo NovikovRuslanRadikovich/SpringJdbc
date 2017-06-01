@@ -3,12 +3,14 @@ package com.example.ui;
 import com.example.ConfigurationControllers;
 import com.example.entities.Automobile;
 import com.example.service.AutomobilesService;
+import com.example.validation.AutomobileValid;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,12 +61,23 @@ public  class EditAutomobilesController extends EventHandling {
         automobile.setProbeg(yearEdit.getText());
         automobile.setRentpay(rentpayEdit.getText());
 
-        automobilesService.update(automobile);
+        AutomobileValid Valid = new AutomobileValid();
 
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        if(Valid.validateByPowerty(powerEdit.getText()) && Valid.validateByProbeg(probegEdit.getText())
+                && Valid.validateByRentpay(rentpayEdit.getText())
+                && Valid.validateByYear(yearEdit.getText())) {
+            automobilesService.update(automobile);
 
-        stage.close();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
+            stage.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Wrong edit of data");
+            alert.setHeaderText("Check data for automobile!");
+            alert.setContentText("Impossible to add automobile with such parameters");
+            alert.showAndWait();
+        }
     }
 
     @FXML
