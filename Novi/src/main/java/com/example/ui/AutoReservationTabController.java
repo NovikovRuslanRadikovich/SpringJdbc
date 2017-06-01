@@ -207,7 +207,8 @@ public class AutoReservationTabController extends EventHandling{
     public void addReservation() throws ParseException {
 
         ReservationValid Valid = new ReservationValid();
-       if(Valid.validateByEndDate(back_date.getText())
+       if(Valid.validateByTelephone(telephone.getText()) &&
+               Valid.validateByEndDate(back_date.getText())
                && Valid.validateByStartDate(give_date.getText()) &&
         Valid.validateByComparingStartAndEndDates(give_date.getText(),back_date.getText())) {
            Reservation reservation = new Reservation(username.getText(),telephone.getText(),reservationmodel.getText(),

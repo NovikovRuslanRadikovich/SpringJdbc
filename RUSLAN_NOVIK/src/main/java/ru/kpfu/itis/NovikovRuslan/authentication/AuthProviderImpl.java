@@ -43,9 +43,6 @@ public class AuthProviderImpl implements AuthenticationProvider {
         String name = authentication.getName();
         System.out.println(name);
         System.out.println(authentication.getCredentials().toString());
-   //     User user = userService.findUser(name);
-   //     System.out.println(user.getPassword());
-   //     System.out.println(user.getUsername());
         if(userService.findUser(name) == null){
             throw new UsernameNotFoundException("user not found");
 

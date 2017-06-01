@@ -26,6 +26,8 @@ public class ReservationValid {
     @Autowired
     UsersService users;
 
+    public static final String numberExp = "\\d+";
+
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
     private Pattern pattern = Pattern.compile(DATE_PATTERN);
@@ -105,6 +107,16 @@ public class ReservationValid {
 
     public boolean validateByUserExistence(String username, String telephone) {
         if(users.findFromUsernameAndTelephone(username,telephone).size() >= 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validateByTelephone(String telephone) {
+        if(telephone.isEmpty()) {
+            return false;
+        }
+        if(telephone.matches(numberExp)) {
             return true;
         }
         return false;
